@@ -1,0 +1,7 @@
+export enum TOP_BAR_ENUM {
+  ENVIRONMENT = 0,
+  PASSWORD_CHANGE = 1,
+  SET_2FA = 2,
+  WORKSPACE = 3,
+  LEFT_TIME = 4,
+}

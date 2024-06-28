@@ -31,7 +31,7 @@ const AdminMenuTopBar: React.FC<IProps> = ({ admin }) => {
       <Divider style={{ margin: '10px 0' }} />
       <h5 className="text-xs mb-2 px-2 text-mono-800">계정</h5>
       <article className="flex items-center gap-2  px-2">
-        <UserAvatar name={admin?.nickName} size={36} />
+        <UserAvatar profileImageUrl={admin?.profileImageUrl} name={admin?.nickName} size={36} />
         <div className="flex flex-col">
           <span className="font-semibold">{admin?.nickName}</span>
           <div className="font-light text-mono-500 text-xs">{admin?.email}</div>
@@ -42,18 +42,20 @@ const AdminMenuTopBar: React.FC<IProps> = ({ admin }) => {
       <article className="px-2 flex flex-col">
         <Button
           type="text"
-          style={{ fontSize: 14, textAlign: 'left', padding: 0, fontWeight: 500 }}
+          style={{ fontSize: 14, padding: 0, fontWeight: 500 }}
           icon={<SyncOutlined />}
           ref={(element) => {
             refs.current[TOP_BAR_ENUM.PASSWORD_CHANGE] = element;
           }}
+          className="flex justify-start"
         >
           <Link href={`/change-password`}>비밀번호 재설정</Link>
         </Button>
         <Button
           type="text"
-          style={{ fontSize: 14, textAlign: 'left', padding: 0, fontWeight: 500 }}
+          style={{ fontSize: 14, padding: 0, fontWeight: 500 }}
           icon={<UnlockOutlined />}
+          className="flex justify-start"
           onClick={handleLogout}
         >
           로그아웃

@@ -1,7 +1,5 @@
 'use client';
 import React from 'react';
-
-import { UserOutlined } from '@ant-design/icons';
 import useGetAdmin from '@hook/useGetAdmin';
 import { useTopBarStatus } from '@layout/top-bar/component/TopBarContextProvider';
 import AdminMenuTopBar from '@layout/top-bar/component/AdminMenuTopBar';
@@ -11,9 +9,12 @@ import { Avatar, Popover } from 'antd';
 const AvatarTopBar: React.FC = () => {
   const admin = useGetAdmin();
   const { tourOpen, userMenuOpen, handleUserMenuOpenChange, popoverTrigger } = useTopBarStatus();
-  const iconProps = admin?.nickName ? {} : { icon: <UserOutlined /> };
-  const label = admin?.nickName?.slice(-2);
-  const color = getColorFromUserName(admin?.nickName ?? '');
+  const iconProps = admin?.profileImageUrl
+    ? { src: admin?.profileImageUrl }
+    : {
+        children: admin?.nickName?.slice(-2),
+        style: { backgroundColor: getColorFromUserName(admin?.nickName ?? '') },
+      };
 
   return (
     <li>
@@ -25,9 +26,7 @@ const AvatarTopBar: React.FC = () => {
         onOpenChange={!tourOpen ? handleUserMenuOpenChange : () => {}}
         zIndex={1000}
       >
-        <Avatar {...iconProps} style={{ backgroundColor: color }}>
-          {label}
-        </Avatar>
+        <Avatar {...iconProps} size={44} />
       </Popover>
     </li>
   );

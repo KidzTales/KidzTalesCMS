@@ -10,7 +10,7 @@ const fnv1a = (code: string) => {
   return hash;
 };
 
-const getColorFromUserName = (userName: string) => {
+const getColorFromUserName = (userName: string | undefined) => {
   if (!userName) return '#DDDDDD';
 
   const hash = fnv1a(userName);
